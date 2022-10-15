@@ -1,5 +1,15 @@
 import type { Equal, Expect } from '@type-challenges/utils'
 
+/*
+  誤答
+  Uが T[0] | T[1] | T[2] ... を継承しているか？というアプローチでしようとしていた
+
+  type Includes<T extends readonly any[], U> = U extends T[number] ? true : false
+*/
+
+// リストはスプレッド演算子で分割代入っぽい表現が可能
+type Includes<T extends readonly any[], U> = T extends [infer E, ...infer R] ? (Equal<E, U> extends true ? true : Includes<R, U>) : false
+
 type cases = [
   Expect<Equal<Includes<['Kars', 'Esidisi', 'Wamuu', 'Santana'], 'Kars'>, true>>,
   Expect<Equal<Includes<['Kars', 'Esidisi', 'Wamuu', 'Santana'], 'Dio'>, false>>,

@@ -1,5 +1,16 @@
 import type { Equal, Expect } from '@type-challenges/utils'
 
+/*
+  誤答
+
+  再起的に解決しようとした
+  実際にはlistのlengthプロパティにアクセスすれば良いだけの話だった
+
+  type Length<T extends any[]> = T extends [] ? 0 : Length<T[number]>
+*/
+
+type Length<T extends (any[] | readonly any[])> = T['length']
+
 const tesla = ['tesla', 'model 3', 'model X', 'model Y'] as const
 const spaceX = ['FALCON 9', 'FALCON HEAVY', 'DRAGON', 'STARSHIP', 'HUMAN SPACEFLIGHT'] as const
 

@@ -1,5 +1,7 @@
 import type { Equal, Expect } from '@type-challenges/utils'
 
+type Concat<T extends any[], U extends any[]> = [...T, ...U]
+
 type cases = [
   Expect<Equal<Concat<[], []>, []>>,
   Expect<Equal<Concat<[], [1]>, [1]>>,
